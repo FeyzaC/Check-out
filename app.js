@@ -49,13 +49,23 @@ const calculateProductPrice = (btn) => {
   const productTotalDiv = productInfoDiv.querySelector(".price");
 
   productTotalDiv.innerText = price * quantity.toFixed(2);
-  const productTotalPricesDiv = document.querySelector(".price");
-  const subtotal = [...productTotalPricesDiv].reduce(
+};
+
+const calculateCartPrice = () => {
+  const productsTotalPricesDiv = document.querySelectorAll(".price");
+  const subtotal = [...productsTotalPricesDiv].reduce(
     (acc, price) => acc + Number(price.innerText)
   );
   const taxtPrice = subtotal * localStorage.getItem("taxtRate");
-  subtotal > 0 && subtotal < localStorage.getItem("shippingFreePrice")
-    ? localStorage.getItem("shippingPreice")
-    : 0;
+  const shippingPrice = parseFloat(
+    subtotal > 0 && subtotal < localStorage.getItem("shippingFreePrice")
+      ? localStorage.getItem("shippingPrice")
+      : 0
+  );
   const totalCart = subtotal + taxtPrice + shippingPrice;
+
+  document.querySelector("#subtotalCart").innerText = subtotal.toFixed(2);
+  document.querySelector("#taxRateCart").innerText = taxtPrice.toFixed(2);
+  document.querySelector("#shippingCart").innerText = shippingPrice.toFixed(2);
+  document.querySelector("#totalCart").innerText = totalCart.toFixed(2);
 };
