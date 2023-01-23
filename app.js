@@ -1,11 +1,11 @@
 const taxtRate = 0.18;
 const shippingPrice = 20;
-const shippingFreePreice = 300;
+const shippingFreePrice = 300;
 
 window.addEventListener("load", () => {
   localStorage.setItem("taxtRate", taxtRate);
   localStorage.setItem("shippingPrice", shippingPrice);
-  localStorage.setItem("shippingFreePreice", shippingFreePreice);
+  localStorage.setItem("shippingFreePrice", shippingFreePrice);
 
   //   sessionStorage.setItem("taxtRate, taxtRate");
   //   sessionStorage.setItem("shippingPrice", shippingPrice);
@@ -48,13 +48,14 @@ const calculateProductPrice = (btn) => {
   const quantity = Number(productInfoDiv.querySelector(".quantity").innerText);
   const productTotalDiv = productInfoDiv.querySelector(".price");
 
-  productTotalDiv.innerText = price * quantity.toFixed(2);
+  productTotalDiv.innerText = (price * quantity).toFixed(2);
 };
 
 const calculateCartPrice = () => {
   const productsTotalPricesDiv = document.querySelectorAll(".price");
   const subtotal = [...productsTotalPricesDiv].reduce(
-    (acc, price) => acc + Number(price.innerText)
+    (acc, price) => acc + Number(price.innerText),
+    0
   );
   const taxtPrice = subtotal * localStorage.getItem("taxtRate");
   const shippingPrice = parseFloat(
