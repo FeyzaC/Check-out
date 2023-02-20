@@ -7,6 +7,6 @@ In this project, I tried to simulat a web application shopping cart dashboard sc
 - CSS
 - JavaScript (Vanilla)
 
-## Tech Stack
+To visit, click https://feyzac.github.io/Check-out/[https://feyzac.github.io/Check-out/]
 
 ## Image
